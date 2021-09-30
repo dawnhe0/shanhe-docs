@@ -31,19 +31,19 @@ draft: false
 
   点击集群**基本属性**右侧按钮里的**扩容集群**，在集群性能不足时提高集群的配置。
 
-> **提示**：硬盘扩容不会导致服务重启，扩容CPU，内存等核心资源则会导致服务重启
+> **提示**：硬盘扩容不会导致服务重启，扩容 CPU，内存等核心资源则会导致服务重启
 
 ![](../../_images/expand_cluster.png)
 
 ## 跨网访问
 
-青云提供灵活的网络配置，一般建议Kafka集群和客户端（生产者、消费者）都在同一个VPC下工作，来达到最高的性能。如果Kafka在实际使用中会出现producer，consumer与broker都不在一个网段之中需要跨VPC，可以考虑以下方法：
+山河计算平台提供灵活的网络配置，一般建议 Kafka 集群和客户端（生产者、消费者）都在同一个 VPC 下工作，来达到最高的性能。如果Kafka在实际使用中会出现 producer，consumer 与 broker 都不在一个网段之中需要跨 VPC，可以考虑以下方法：
 
-1. 通过[边界路由器](https://docs.qingcloud.com/product/network/border)、[IP Sec 隧道](https://docs.qingcloud.com/product/network/ipsec)、[GRE隧道](https://docs.qingcloud.com/product/network/gre) 等方式把网络打通，这种方式适合于大规模复杂网络的情况。
+1. 通过[边界路由器](/network/border_router/)、[IP Sec 隧道](/network/vpc/manual/tunnel/ipsec/)、[GRE隧道](/network/vpc/manual/tunnel/gre/) 等方式把网络打通，这种方式适合于大规模复杂网络的情况。
 
-2. 配置[VPN](https://docs.qingcloud.com/product/network/vpn)，这种方法通常用于本地开发测试。
+2. 配置[VPN](/network/vpc/manual/vpn/)，这种方法通常用于本地开发测试。
 
-3. 通过集群参数`advertised.host.name`和`advertised.port`对外暴露出来，这种方式只适合于单节点kafka集群。需要在broker所在的路由器上配置 [端口转发](https://docs.qingcloud.com/product/network/appcenter_network_config/config_portmapping) ，并且需要修改broker的`advertised.host.name`与`advertised.port`为路由器转发的源地址和源端口。这是因为Kafka各节点（broker、producer、consumer）之间是靠advertised host与advertised port通讯的。假设路由器的IP地址是207.226.141.61，端口9080转发到Kafka broker 192.168.0.10端口9092，点击**配置参数**，点击**参数**右侧的**修改属性**按钮，修改advertised.host.name为 207.226.141.61，修改advertised.port为9080。
+3. 通过集群参数`advertised.host.name`和`advertised.port`对外暴露出来，这种方式只适合于单节点kafka集群。需要在broker所在的路由器上配置 [端口转发](/network/vpc/faq/methods_of_port_forwarding/) ，并且需要修改broker的`advertised.host.name`与`advertised.port`为路由器转发的源地址和源端口。这是 Kafka 各节点（broker、producer、consumer）之间是靠 advertised host 与 advertised port 通讯的。假设路由器的IP地址是207.226.141.61，端口9080转发到Kafka broker 192.168.0.10端口9092，点击**配置参数**，点击**参数**右侧的**修改属性**按钮，修改 advertised.host.name 为 207.226.141.61，修改advertised.port为9080。
 
    ![](../../_images/modify_parameter.png)
 
@@ -70,7 +70,7 @@ draft: false
 
 ## 日志及文件查看
 
-为了更好的获取节点使用情况，青云提供了方便快捷的文件日志获取服务。配置[VPN](https://docs.qingcloud.com/product/network/vpn)或[端口转发](https://docs.qingcloud.com/product/network/appcenter_network_config/config_portmapping)后，确保本地可以访问集群网络。即可在本地浏览器里查看或下载相应节点的日志和文件。
+为了更好的获取节点使用情况，青云提供了方便快捷的文件日志获取服务。配置[VPN](/network/vpc/manual/vpn/)或[端口转发](/network/vpc/faq/methods_of_port_forwarding/)后，确保本地可以访问集群网络。即可在本地浏览器里查看或下载相应节点的日志和文件。
 
 在控制台`Appcenter -> 集群列表`标签下可以看到集群每个节点的信息，如节点角色，节点IP。对于Kafka-manager节点，在浏览器输入`http://节点IP`，可查看Kafka Manager的日志文件。
 

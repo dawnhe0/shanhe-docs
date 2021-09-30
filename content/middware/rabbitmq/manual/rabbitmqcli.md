@@ -3,7 +3,7 @@ title: "rabbitmqcli 使用示例"
 description: test
 weight: 16
 draft: false
-keyword:  QingCloud, RabbitMQ, rabbitmq,  消息队列服务, 消息中间件
+keyword: RabbitMQ, rabbitmq,  消息队列服务, 消息中间件
 ---
 
 官网参考地址：[http://www.rabbitmq.com/management-cli.html](http://www.rabbitmq.com/management-cli.html)

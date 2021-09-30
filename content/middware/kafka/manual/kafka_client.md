@@ -1,11 +1,11 @@
 ---
-title: "Kafka客户端命令行简介"
+title: "Kafka 客户端命令行简介"
 description: test
 weight: 12
 draft: false
 ---
 
->**提示**：使用Kafka 1.0.0-QingCloud1.1.6及后续版本，建议使用青云为您创建客户端节点，用户名：`ubuntu`，密码：`kafka`。
+>**提示**：使用 Kafka 1.0.0-ShanHe 1.1.6及 后续版本，建议使用山河为您创建客户端节点，用户名：`ubuntu`，密码：`kafka`。
 
 ## 创建Topic
 
